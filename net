@@ -1,0 +1,37 @@
+const { EntitySchema } = require("typeorm");
+
+const Client = new EntitySchema({
+  name: "Client",
+  tableName: "clients",
+  columns: {
+    id: {
+      primary: true,
+      type: "int",
+      generated: true,
+    },
+    name: {
+      type: "varchar",
+    },
+    email: {
+      type: "varchar",
+    },
+  },
+  relations: {
+    projects: {
+      type: "one-to-many",
+      target: "Project",
+      inverseSide: "client", 
+      cascade: true,
+    },
+  },
+});
+
+module.exports = { Client };
+
+
+
+
+
+
+
+
